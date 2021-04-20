@@ -2,7 +2,7 @@ chiffre     [0-9]
 majuscule   [A-Z]
 majOuChif   {majuscule}|{chiffre}
 nom         {majuscule}+("-"{majuscule}+)?
-jour        [0-2]{chiffre}
+jour        (([0-2]{chiffre})|(3[01]))
 mois        (1?[0-2])|(0?[1-9])
 annee       {chiffre}{2}
 heure       (([01]{chiffre})|(2[0-3]))
