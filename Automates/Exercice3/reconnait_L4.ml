@@ -47,13 +47,13 @@ let reconnaitRec_0(mot : string) : bool =
     else false
 ;;
 
-let reconnaitRecR4(mot : string) : bool =
+let reconnaitRecL4(mot : string) : bool =
   reconnaitRec_0(mot)
 ;;
 
 let main() =
   let affichage mot =
-    if reconnaitRecR4 mot
+    if reconnaitRecL4 mot
     then Format.printf "%s appartient bien à L4\n" mot
     else Format.printf "%s n'appartient pas à L4\n" mot
   in
