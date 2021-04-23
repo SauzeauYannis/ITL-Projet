@@ -520,8 +520,8 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "Concert.2.lex"
 #line 2 "Concert.2.lex"
-    char * codeDossier;
     char * prenomNom;
+    int codeDossier;
     int nbPlaces;
     int nbConcert;
 #line 528 "lex.yy.c"
@@ -813,15 +813,11 @@ YY_RULE_SETUP
 case 2:
 YY_RULE_SETUP
 #line 18 "Concert.2.lex"
-{
-                                        int memory_size = yyleng * sizeof(char);
-                                        codeDossier = (char *) malloc(memory_size);
-                                        strncpy(codeDossier, yytext, memory_size);
-                                    }
+{codeDossier = atoi(yytext);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 23 "Concert.2.lex"
+#line 19 "Concert.2.lex"
 {
                                         int memory_size = yyleng * sizeof(char);
                                         prenomNom = (char *) malloc(memory_size);
@@ -830,55 +826,55 @@ YY_RULE_SETUP
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 28 "Concert.2.lex"
+#line 24 "Concert.2.lex"
 {}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 29 "Concert.2.lex"
+#line 25 "Concert.2.lex"
 {nbPlaces += atoi(yytext);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 30 "Concert.2.lex"
+#line 26 "Concert.2.lex"
 {}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 31 "Concert.2.lex"
+#line 27 "Concert.2.lex"
 {}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 32 "Concert.2.lex"
+#line 28 "Concert.2.lex"
 {}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 33 "Concert.2.lex"
+#line 29 "Concert.2.lex"
 {nbConcert++;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 34 "Concert.2.lex"
+#line 30 "Concert.2.lex"
 {}
 	YY_BREAK
 case 11:
 /* rule 11 can match eol */
 YY_RULE_SETUP
-#line 35 "Concert.2.lex"
+#line 31 "Concert.2.lex"
 {}
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
-#line 36 "Concert.2.lex"
+#line 32 "Concert.2.lex"
 {yyterminate();}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 37 "Concert.2.lex"
+#line 33 "Concert.2.lex"
 ECHO;
 	YY_BREAK
-#line 882 "lex.yy.c"
+#line 878 "lex.yy.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -1884,7 +1880,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 37 "Concert.2.lex"
+#line 33 "Concert.2.lex"
 
 int main() {
     nbPlaces = 0;
@@ -1892,7 +1888,9 @@ int main() {
     
     yylex();
 
-    printf("Pour le dossier %s, %s a acheté %d places de %d concerts\n", codeDossier, prenomNom, nbPlaces, nbConcert);
+    printf("Pour le dossier %d, %s a acheté %d places de %d concerts\n", codeDossier, prenomNom, nbPlaces, nbConcert);
+
+    free(prenomNom);
 
     return EXIT_SUCCESS;
 }

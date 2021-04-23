@@ -7,12 +7,17 @@ let divisePremiereLettre(mot : string) : (char * string) =
   (mot.[0], String.sub mot 1 (String.length mot - 1))
 ;;
 
+(** Test si le caractère est un chiffre **)
+let estUnChiffre(c : char) : bool =
+  c >= '0' && c <= '9'
+;;
+
 let rec reconnaitRec_3(mot : string) : bool =
   if mot = ""
   then true
   else
     let (c, m) = divisePremiereLettre(mot) in
-    if c >= '0' && c <= '9'
+    if estUnChiffre(c)
     then reconnaitRec_3(m)
     else false
 ;;
@@ -22,7 +27,7 @@ let rec reconnaitRec_2(mot : string) : bool =
   then false
   else
     let (c, m) = divisePremiereLettre(mot) in
-    if c >= '0' && c <= '9'
+    if estUnChiffre(c)
     then reconnaitRec_2(m)
     else
       if c = '.'
@@ -35,7 +40,7 @@ let reconnaitRec_1(mot : string) : bool =
   then false
   else
     let (c, m) = divisePremiereLettre(mot) in
-    if c >= '0' && c <= '9'
+    if estUnChiffre(c)
     then reconnaitRec_2(m)
     else false
 ;;
@@ -48,7 +53,7 @@ let reconnaitRec_0(mot : string) : bool =
     if c = '+' || c = '-'
     then reconnaitRec_1(m)
     else
-      if c >= '0' && c <= '9'
+      if estUnChiffre(c)
       then reconnaitRec_2(m)
       else false
 ;;

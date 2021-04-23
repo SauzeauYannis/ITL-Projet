@@ -1,6 +1,6 @@
 %{
-    char * codeDossier;
     char * prenomNom;
+    int codeDossier;
     int nbPlaces;
     int nbConcert;
 %}
@@ -15,11 +15,7 @@ heure       (([01]{chiffre})|(2[0-3]))
 minute      [0-5]{chiffre}  
 %%
 ^DOSSIER                            {}
-{chiffre}{8}                        {
-                                        int memory_size = yyleng * sizeof(char);
-                                        codeDossier = (char *) malloc(memory_size);
-                                        strncpy(codeDossier, yytext, memory_size);
-                                    }
+{chiffre}{8}                        {codeDossier = atoi(yytext);}
 ^{nom}*"/"{nom}*                    {
                                         int memory_size = yyleng * sizeof(char);
                                         prenomNom = (char *) malloc(memory_size);
@@ -41,7 +37,9 @@ int main() {
     
     yylex();
 
-    printf("Pour le dossier %s, %s a acheté %d places de %d concerts\n", codeDossier, prenomNom, nbPlaces, nbConcert);
+    printf("Pour le dossier %d, %s a acheté %d places de %d concerts\n", codeDossier, prenomNom, nbPlaces, nbConcert);
+
+    free(prenomNom);
 
     return EXIT_SUCCESS;
 }

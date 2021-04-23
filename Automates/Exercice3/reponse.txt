@@ -5,4 +5,4 @@ Dans le code de reconnait_0 quand on lit un a il faut retourner le résultat de 
 
 - Comment dans le code de reconnait_1 allez-vous représenter le fait que l'on puisse passer directement, sans rien lire, à l'état 2 ?
 
-Dans le code de reconnait_1 au lieu de retourner un faux si on ne lit pas un a ou un b, on retourne le le résultat de reconnait_2.
+Dans le code de reconnait_1 on rajoute OU (dans le sens booléen) le résultat de reconnait_2 pour à chaque transitions.

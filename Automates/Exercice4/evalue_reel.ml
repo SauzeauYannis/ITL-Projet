@@ -17,6 +17,11 @@ let calcDiviseur(deci : float) : float =
   10. ** float_of_int (String.length (string_of_float deci) - 1)
 ;;
 
+(** Test si le caractère est un chiffre **)
+let estUnChiffre(c : char) : bool =
+  c >= '0' && c <= '9'
+;;
+
 let rec reconnaitRec_3(mot, reel, deci : string * float * float) : (bool * float) =
   if mot = ""
   then
@@ -25,7 +30,7 @@ let rec reconnaitRec_3(mot, reel, deci : string * float * float) : (bool * float
     else (true, reel +. (deci /. calcDiviseur(deci)))
   else
     let (c, m) = divisePremiereLettre(mot) in
-    if c >= '0' && c <= '9'
+    if estUnChiffre(c)
     then reconnaitRec_3(m, reel, 10. *. deci +. (float_of_char c))
     else (false, 0.)
 ;;
@@ -35,7 +40,7 @@ let rec reconnaitRec_2(mot, reel : string * float) : (bool * float) =
   then (false, 0.)
   else
     let (c, m) = divisePremiereLettre(mot) in
-    if c >= '0' && c <= '9'
+    if estUnChiffre(c)
     then
       if reel < 0.
       then reconnaitRec_2(m, 10. *. reel -. (float_of_char c))
@@ -51,7 +56,7 @@ let reconnaitRec_1(mot, reel : string * float) : (bool * float) =
   then (false, 0.)
   else
     let (c, m) = divisePremiereLettre(mot) in
-    if c >= '0' && c <= '9'
+    if estUnChiffre(c)
     then
       if reel < 0.
       then reconnaitRec_2(m, reel +. 1. -. (float_of_char c))
@@ -70,7 +75,7 @@ let reconnaitRec_0(mot : string ) : (bool * float) =
       if c = '-'
       then reconnaitRec_1(m, -1.)
       else
-        if c >= '0' && c <= '9'
+        if estUnChiffre(c)
         then reconnaitRec_2(m, float_of_char c)
         else (false, 0.)
 ;;
