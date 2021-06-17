@@ -49,7 +49,7 @@ Les programmes ont été compilés pour s'exécuter sous Linux, vous pouvez donc
 
 ### Résultat
 
-Nous avons obtenu la note de ?/20. (Résultat en juin)
+Nous avons obtenu la note de 16,5/20.
 
 <a name="en"/>
 
@@ -88,4 +88,4 @@ The programs have been compiled to run under Linux, so you can run the following
 
 ### Result
 
-We obtained a score of ?/20. (Result in June)
+We obtained a score of 16.5/20.
